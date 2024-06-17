@@ -1,0 +1,33 @@
+﻿@model TelCompany.Models.Discount
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Discount</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayName("Discount No: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.DiscountID)
+		</dd>
+		<dt>
+			@Html.DisplayName("Percentage of Discount: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.PercOfDiscount)
+		</dd>
+
+	</dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DiscountID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

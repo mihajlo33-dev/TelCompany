@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeleCompanyModelStoreContainer" CdmEntityContainer="TeleCompanyEntities">
+    <EntitySetMapping Name="Agents">
+      <EntityTypeMapping TypeName="TeleCompanyModel.Agent">
+        <MappingFragment StoreEntitySet="Agent">
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="TeleCompanyModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CampaignForms">
+      <EntityTypeMapping TypeName="TeleCompanyModel.CampaignForm">
+        <MappingFragment StoreEntitySet="CampaignForm">
+          <ScalarProperty Name="CampaignFormID" ColumnName="CampaignFormID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+          <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="TeleCompanyModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="TeleCompanyModel.Discount">
+        <MappingFragment StoreEntitySet="Discount">
+          <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+          <ScalarProperty Name="PercOfDiscount" ColumnName="PercOfDiscount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchases">
+      <EntityTypeMapping TypeName="TeleCompanyModel.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TeleCompanyModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TeleCompanyModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TeleCompanyModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TeleCompanyModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TeleCompanyModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeleCompanyModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TeleCompanyModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeleCompanyModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TeleCompanyModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TeleCompanyModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,66 @@
+﻿@model TelCompany.Models.CampaignForm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CampaignForm</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayName("Campaign Form No: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CampaignFormID)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Date: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Agent: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Agent.FirstName)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Customer: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Customer.FirstName)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Discount No: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Discount.DiscountID)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Purchase No: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Purchase.PurchaseID)
+		</dd>
+
+	</dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CampaignFormID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

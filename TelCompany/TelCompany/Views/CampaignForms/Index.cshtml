@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TelCompany.Models.CampaignForm>
+
+@{
+    ViewBag.Title = "Campaign Form";
+}
+
+<h2>Campaign Forms</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-condensed table-striped table-hover sortable">
+	<tr>
+		<th>
+			@Html.DisplayName("Campaign No :")
+		</th>
+		<th>
+			@Html.DisplayName("Customer :")
+		</th>
+		<th>
+			@Html.DisplayName("Agent : ")
+		</th>
+		<th>
+			@Html.DisplayName("Discount: ")
+		</th>
+		<th>
+			@Html.DisplayName("Purchase No :")
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+<tr>
+	<td>
+		@Html.DisplayFor(modelItem => item.CampaignFormID)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.Customer.FirstName)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.Agent.FirstName)
+	</td>
+
+	<td>
+		@Html.DisplayFor(modelItem => item.Discount.PercOfDiscount)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.Purchase.PurchaseID)
+	</td>
+	<td>
+		@Html.ActionLink("Edit", "Edit", new { id = item.CampaignFormID }) |
+		@Html.ActionLink("Details", "Details", new { id = item.CampaignFormID }) |
+		@Html.ActionLink("Delete", "Delete", new { id = item.CampaignFormID })
+	</td>
+</tr>
+}
+
+</table>

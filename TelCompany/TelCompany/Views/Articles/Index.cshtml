@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TelCompany.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Articles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-condensed table-striped table-hover sortable">
+	<tr>
+		<th>
+			@Html.DisplayName("Article No: ")
+		</th>
+		<th>
+			@Html.DisplayName("Article Name: ")
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+<tr>
+	<td>
+		@Html.DisplayFor(modelItem => item.ArticleID)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.Name)
+	</td>
+	<td>
+		@Html.ActionLink("Edit", "Edit", new { id = item.ArticleID }) |
+		@Html.ActionLink("Details", "Details", new { id = item.ArticleID }) |
+		@Html.ActionLink("Delete", "Delete", new { id = item.ArticleID })
+	</td>
+</tr>
+}
+
+</table>

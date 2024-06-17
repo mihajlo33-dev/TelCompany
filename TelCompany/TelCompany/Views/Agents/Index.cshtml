@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TelCompany.Models.Agent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Agent</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-condensed table-striped table-hover sortable">
+	<tr>
+		<th>
+			@Html.DisplayName("Agent No: ")
+		</th>
+		<th>
+			@Html.DisplayName("First Name: ")
+		</th>
+		<th>
+			@Html.DisplayName("Last Name: ")
+		</th>
+		<th>
+			@Html.DisplayName("Birth Date: ")
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+<tr>
+	<td>
+		@Html.DisplayFor(modelItem => item.AgentID)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.FirstName)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.LastName)
+	</td>
+	<td>
+		@Html.DisplayFor(modelItem => item.BirthDate)
+	</td>
+	<td>
+		@Html.ActionLink("Edit", "Edit", new { id = item.AgentID }) |
+		@Html.ActionLink("Details", "Details", new { id = item.AgentID }) |
+		@Html.ActionLink("Delete", "Delete", new { id = item.AgentID })
+	</td>
+</tr>
+}
+
+</table>

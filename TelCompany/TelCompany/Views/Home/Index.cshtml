@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TelCompany.Models.CampaignFormViewModel>
+
+<div class="container">
+	<table class="table table-bordered table-condensed table-striped table-hover sortable">
+		<thead>
+			<th>Campaign Form No.</th>
+			<th>Customer No.</th>
+			<th>Agent No.</th>
+			<th>Discount No.</th>
+			<th>Purchase No.</th>
+			<th>Date</th>
+		</thead>
+		<tbody>
+			@if (Model != null)
+			{
+
+				foreach (var item in Model)
+				{
+
+					if (item.Date >= DateTime.Now.AddDays(-30))
+					{
+						<tr style="background-color:deeppink">
+							<td>@item.CampaignFormID</td>
+							<td>@item.CustomerID</td>
+							<td>@item.AgentID</td>
+							<td>@item.DiscountID</td>
+							<td>@item.PurchaseID</td>
+							<td>@item.Date</td>
+						</tr>
+					}
+					else
+					{
+						<tr>
+							<td>@item.CampaignFormID</td>
+							<td>@item.CustomerID</td>
+							<td>@item.AgentID</td>
+							<td>@item.DiscountID</td>
+							<td>@item.PurchaseID</td>
+							<td>@item.Date</td>
+						</tr>
+					}
+				}	
+			}
+		</tbody>
+	</table>
+	<a href="@Url.Action("ExportToExcel","Home")">Export Excel</a>
+</div>

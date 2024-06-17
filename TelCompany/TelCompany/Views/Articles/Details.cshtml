@@ -1,0 +1,35 @@
+﻿@model TelCompany.Models.Article
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+	<dl class="dl-horizontal">
+
+		<dt>
+			@Html.DisplayName("Article No : ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ArticleID)
+		</dd>
+
+		<dt>
+			@Html.DisplayName("Article Name: ")
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+	</dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ArticleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

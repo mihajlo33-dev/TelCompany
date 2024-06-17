@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeleCompanyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agent">
+    <Key>
+      <PropertyRef Name="AgentID" />
+    </Key>
+    <Property Name="AgentID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleID" />
+    </Key>
+    <Property Name="ArticleID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CampaignForm">
+    <Key>
+      <PropertyRef Name="CampaignFormID" />
+    </Key>
+    <Property Name="CampaignFormID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="AgentID" Type="int" />
+    <Property Name="DiscountID" Type="int" />
+    <Property Name="PurchaseID" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_ID" />
+    </Key>
+    <Property Name="Customer_ID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="DiscountID" />
+    </Key>
+    <Property Name="DiscountID" Type="int" Nullable="false" />
+    <Property Name="PercOfDiscount" Type="int" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="PurchaseID" />
+    </Key>
+    <Property Name="PurchaseID" Type="int" Nullable="false" />
+    <Property Name="ArticleID" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_CampaignForm_Agent">
+    <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+    <End Role="CampaignForm" Type="Self.CampaignForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Agent">
+        <PropertyRef Name="AgentID" />
+      </Principal>
+      <Dependent Role="CampaignForm">
+        <PropertyRef Name="AgentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampaignForm_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="CampaignForm" Type="Self.CampaignForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_ID" />
+      </Principal>
+      <Dependent Role="CampaignForm">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampaignForm_Discount">
+    <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+    <End Role="CampaignForm" Type="Self.CampaignForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="DiscountID" />
+      </Principal>
+      <Dependent Role="CampaignForm">
+        <PropertyRef Name="DiscountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampaignForm_Purchase">
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="0..1" />
+    <End Role="CampaignForm" Type="Self.CampaignForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="PurchaseID" />
+      </Principal>
+      <Dependent Role="CampaignForm">
+        <PropertyRef Name="PurchaseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="TeleCompanyModelStoreContainer">
+    <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CampaignForm" EntityType="Self.CampaignForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CampaignForm_Agent" Association="Self.FK_CampaignForm_Agent">
+      <End Role="Agent" EntitySet="Agent" />
+      <End Role="CampaignForm" EntitySet="CampaignForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampaignForm_Customer" Association="Self.FK_CampaignForm_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CampaignForm" EntitySet="CampaignForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampaignForm_Discount" Association="Self.FK_CampaignForm_Discount">
+      <End Role="Discount" EntitySet="Discount" />
+      <End Role="CampaignForm" EntitySet="CampaignForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampaignForm_Purchase" Association="Self.FK_CampaignForm_Purchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="CampaignForm" EntitySet="CampaignForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Article" Association="Self.FK_Purchase_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
